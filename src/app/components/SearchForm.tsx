@@ -1,5 +1,8 @@
 import { FormEvent, MouseEvent } from 'react'
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 export default function SearchForm({
   handleSearch,
   handleReset,
@@ -9,51 +12,34 @@ export default function SearchForm({
 }) {
   return (
     <form onSubmit={handleSearch}>
-      <div style={{ alignItems: 'end', display: 'flex', flexDirection: 'row' }}>
-        <div style={{ alignItems: 'middle', display: 'flex', flexDirection: 'column' }}>
-          <label id="searchLabel" htmlFor="searchTerm" style={{color: '#bbbbbb', fontWeight: 'bold' }}>
-            Search Country
-          </label>
-          <input
-            autoFocus
+      <div className="flex items-center flex-row">
+        <div className="flex items-center flex-column">
+          <TextField
             id="searchTerm"
             name="searchTerm"
-            style={{
-              borderRadius: '0.188rem',
-              border: '0.1rem solid #bbbbbb',
-              padding: '0.5rem'
-            }}
+            label="Search Country"
+            size="small"
+            variant="outlined"
+            autoFocus
           />
         </div>
-        <button
+        <Button
+          sx={{ mx: '0.5rem' }}
           id="submitButton"
           type="submit"
-          style={{
-            backgroundColor: 'dodgerblue',
-            borderColor: 'dodgerblue',
-            borderRadius: '0.188rem',
-            color: '#eeeeee',
-            padding: '0.5rem',
-            marginLeft: '0.5rem'
-          }}
+          variant="contained"
         >
           Search
-        </button>
-        <button
+        </Button>
+        <Button
+          sx={{ mr: '0.5rem' }}
           id="resetButton"
           type="reset"
+          variant="outlined"
           onClick={handleReset}
-          style={{
-            backgroundColor: 'transparent',
-            borderColor: 'dodgerblue',
-            borderRadius: '0.188rem',
-            color: 'dodgerblue',
-            padding: '0.5rem',
-            marginLeft: '0.5rem'
-          }}
         >
           Clear
-        </button>
+        </Button>
       </div>
     </form>
   )

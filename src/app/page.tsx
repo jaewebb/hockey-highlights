@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 
 import { type FormEvent } from 'react'
 
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import ErrorAlert from '@/app/components/ErrorAlert'
 import CountryList from '@/app/components/CountryList'
 import SearchForm from '@/app/components/SearchForm'
@@ -27,23 +29,17 @@ export default function Home() {
     setSearchTerm('')
   }
 
-  const filteredCountries = useMemo(() => filterCountries(countries ?? [], searchTerm), [countries, searchTerm])
+  const filteredCountries = useMemo(() => filterCountries((countries && countries.length > 0) ? countries : [], searchTerm), [countries, searchTerm])
 
   return (
-    <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '1rem' }}>
-      <div style={{ padding: '2rem 0' }}>
+    <Container>
+      <Box sx={{ py: '1rem' }}>
         <SearchForm handleSearch={handleSearch} handleReset={handleReset} />
-      </div>
+      </Box>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div style={{
-          columnGap: '1rem',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          rowGap: '1rem'
-        }}>
+        <div className="grid grid-cols-4 gap-4">
           {error ? (
             <ErrorAlert error={error.toString()} />
           ) : (
@@ -51,7 +47,11 @@ export default function Home() {
           )}
         </div>
       )}
-      <footer style={{ paddingTop: '2rem', textAlign: 'center' }}>&copy;{ new Date().getFullYear() } Jae Webb</footer>
-    </div>
+      <footer>
+        <Box sx={{ pt: '2rem', textAlign: 'center' }}>
+          &copy;{ new Date().getFullYear() } Jae Webb
+        </Box>
+      </footer>
+    </Container>
   )
 }
