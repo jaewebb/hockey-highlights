@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 
-import ErrorAlert from '../ErrorAlert'
+import ErrorAlert from '@/app/components/ErrorAlert'
 
 test('loads the error alert', async () => {
   const error = 'There was an error.'

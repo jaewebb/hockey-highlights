@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 
-import CountryCard from '../CountryCard'
+import CountryCard from '@/app/components/CountryCard'
 
 test('Renders the country card', async () => {
   const country = {

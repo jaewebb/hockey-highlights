@@ -4,9 +4,11 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 export default function SearchForm({
+  label,
   handleSearch,
   handleReset,
 }: {
+  label: string,
   handleSearch: (event: FormEvent<HTMLFormElement>) => void
   handleReset: (event: MouseEvent<HTMLButtonElement>) => void
 }) {
@@ -17,7 +19,7 @@ export default function SearchForm({
           <TextField
             id="searchTerm"
             name="searchTerm"
-            label="Search Country"
+            label={label}
             size="small"
             variant="outlined"
             autoFocus

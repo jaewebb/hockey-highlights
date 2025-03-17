@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 
+import AppFooter from '@/app/components/AppFooter';
 import HockeyThemeProvider from '@/app/components/HockeyThemeProvider';
 
 const roboto = Roboto({
@@ -24,12 +25,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${roboto.variable} antialiased`}
-      >
+      <body className={`${roboto.variable} antialiased`}>
         <HockeyThemeProvider>
           {children}
         </HockeyThemeProvider>
+        <AppFooter />
       </body>
     </html>
   );

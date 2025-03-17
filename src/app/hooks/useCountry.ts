@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { type Country } from '../types/Country'
+import { type Country } from '@/app/types/Country'
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 

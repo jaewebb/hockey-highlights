@@ -1,22 +1,26 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 import { type FormEvent } from 'react'
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import ErrorAlert from '@/app/components/ErrorAlert'
-import CountryList from '@/app/components/CountryList'
+import LeagueList from '@/app/components/LeagueList'
 import SearchForm from '@/app/components/SearchForm'
 
 import filterByName from '@/app/utils/filterByName'
 
-import useCountry from '@/app/hooks/useCountry'
-import { type Country } from '@/app/types/Country'
+import useLeague from '@/app/hooks/useLeague'
 
-export default function Home() {
-  const { countries, isLoading, error } = useCountry('/api/countries')
+export default function Leagues() {
+  const searchParams = useSearchParams()
+ 
+  const countryCode = searchParams.get('countryCode')
+
+  const { leagues, isLoading, error } = useLeague(`/api/leagues?countryCode=${countryCode}`)
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
@@ -30,12 +34,12 @@ export default function Home() {
     setSearchTerm('')
   }
 
-  const filteredCountries = useMemo(() => filterByName((countries && countries.length > 0) ? countries : [], searchTerm), [countries, searchTerm]) as Country[]
+  const filteredLeagues = useMemo(() => filterByName((leagues && leagues.length > 0) ? leagues : [], searchTerm), [leagues, searchTerm])
 
   return (
     <Container>
       <Box sx={{ py: '1rem' }}>
-        <SearchForm label="Search Country" handleSearch={handleSearch} handleReset={handleReset} />
+        <SearchForm label="Search League" handleSearch={handleSearch} handleReset={handleReset} />
       </Box>
       {isLoading ? (
         <div>Loading...</div>
@@ -44,7 +48,7 @@ export default function Home() {
           {error ? (
             <ErrorAlert error={error.toString()} />
           ) : (
-            <CountryList filteredCountries={filteredCountries} />
+            <LeagueList filteredLeagues={filteredLeagues} />
           )}
         </div>
       )}

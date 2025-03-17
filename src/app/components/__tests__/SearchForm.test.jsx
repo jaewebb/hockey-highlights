@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import SearchForm from '../SearchForm'
+import SearchForm from '@/app/components/SearchForm'
 
 const handleSearch = jest.fn()
 handleSearch.mockImplementation(event => {
@@ -15,7 +15,7 @@ handleClear.mockImplementation(event => {
 })
 
 test('loads the search form', async () => {
-  render(<SearchForm handleSearch={handleSearch} handleClear="handleClear" />)
+  render(<SearchForm label="Search Country" handleSearch={handleSearch} handleClear="handleClear" />)
 
   const input = screen.getByLabelText('Search Country')
   const searchButton = screen.getByRole('button', { name: 'Search' })
@@ -27,7 +27,7 @@ test('loads the search form', async () => {
 })
 
 test('clicks the search button', async () => {
-  render(<SearchForm handleSearch={handleSearch} handleClear="handleClear" />)
+  render(<SearchForm label="Search Country" handleSearch={handleSearch} handleClear="handleClear" />)
 
   const button = screen.getByRole('button', { name: 'Search' })
 
@@ -35,7 +35,7 @@ test('clicks the search button', async () => {
 })
 
 test('clicks the clear button', async () => {
-  render(<SearchForm handleSearch={handleSearch} handleClear="handleClear" />)
+  render(<SearchForm label="Search Country" handleSearch={handleSearch} handleClear="handleClear" />)
 
   const button = screen.getByRole('button', { name: 'Clear' })
   const input = screen.getByLabelText('Search Country')
