@@ -1,5 +1,9 @@
+import { Suspense } from "React";
+
 import type { Metadata } from "next";
+
 import { Roboto } from "next/font/google";
+
 import "./globals.css";
 
 import AppFooter from '@/app/components/AppFooter';
@@ -27,7 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} antialiased`}>
         <HockeyThemeProvider>
+          <Suspense>
           {children}
+          </Suspense>
         </HockeyThemeProvider>
         <AppFooter />
       </body>
