@@ -1,4 +1,4 @@
-import { Suspense } from "React";
+import { Suspense } from "react";
 
 import type { Metadata } from "next";
 
