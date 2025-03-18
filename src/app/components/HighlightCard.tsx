@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { type Highlight } from '@/app/types/Highlight'
 
 export default function HighlightCard({ highlight }: { highlight: Highlight }) {
+  const externaImageLoader = ({ src }: { src: string }) => src
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -13,6 +14,7 @@ export default function HighlightCard({ highlight }: { highlight: Highlight }) {
         {highlight.title}
         </Typography>
           <Image
+            loader={externaImageLoader}
             src={highlight.imgUrl ?? null}
             alt={`Thumbnail preview of ${highlight.title}`}
             height={100}

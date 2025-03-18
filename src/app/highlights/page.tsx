@@ -8,19 +8,19 @@ import { type FormEvent } from 'react'
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import ErrorAlert from '@/app/components/ErrorAlert'
-import LeagueList from '@/app/components/LeagueList'
+import HighlightList from '@/app/components/HighlightList'
 import SearchForm from '@/app/components/SearchForm'
 
-import filterByName from '@/app/utils/filterByName'
+import filterByTitle from '@/app/utils/filterByTitle'
 
-import useLeague from '@/app/hooks/useLeague'
+import useHighlight from '@/app/hooks/useHighlight'
 
 export default function Highlights() {
   const searchParams = useSearchParams()
  
   const leagueId = searchParams.get('leagueId')
 
-  const { leagues, isLoading, error } = useLeague(`/api/highlights?leagueId=${leagueId}`)
+  const { highlights, isLoading, error } = useHighlight(`/api/highlights?leagueId=${leagueId}`)
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
@@ -34,12 +34,12 @@ export default function Highlights() {
     setSearchTerm('')
   }
 
-  const filteredLeagues = useMemo(() => filterByName((leagues && leagues.length > 0) ? leagues : [], searchTerm), [leagues, searchTerm])
+  const filteredHighlights = useMemo(() => filterByTitle((highlights && highlights.length > 0) ? highlights : [], searchTerm), [highlights, searchTerm])
 
   return (
     <Container>
       <Box sx={{ py: '1rem' }}>
-        <SearchForm label="Search League" handleSearch={handleSearch} handleReset={handleReset} />
+        <SearchForm label="Search Highlight" handleSearch={handleSearch} handleReset={handleReset} />
       </Box>
       {isLoading ? (
         <div>Loading...</div>
@@ -48,7 +48,7 @@ export default function Highlights() {
           {error ? (
             <ErrorAlert error={error.toString()} />
           ) : (
-            <LeagueList filteredLeagues={filteredLeagues} />
+            <HighlightList filteredHighlights={filteredHighlights} />
           )}
         </div>
       )}
