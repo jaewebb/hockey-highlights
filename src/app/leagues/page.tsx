@@ -15,6 +15,8 @@ import filterByName from '@/app/utils/filterByName'
 
 import useLeague from '@/app/hooks/useLeague'
 
+import { type League } from '@/app/types/League'
+
 export default function Leagues() {
   const searchParams = useSearchParams()
  
@@ -34,7 +36,7 @@ export default function Leagues() {
     setSearchTerm('')
   }
 
-  const filteredLeagues = useMemo(() => filterByName((leagues && leagues.length > 0) ? leagues : [], searchTerm), [leagues, searchTerm])
+  const filteredLeagues = useMemo(() => filterByName((leagues && leagues.length > 0) ? leagues : [], searchTerm), [leagues, searchTerm]) as League[]
 
   return (
     <Container>
