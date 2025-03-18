@@ -8,7 +8,7 @@ export default function LeagueList({ filteredLeagues }: { filteredLeagues: Leagu
   return filteredLeagues.map(league => {
     return (
       <Link href={`/highlights?leagueId=${league.id}`} key={`league-card-${league.id}`}>
-        <LeagueCard key={`league-card-${league.id}`} league={league} /> 
+        <LeagueCard key={`league-card-id-${league.id}`} league={league} /> 
       </Link>
     )
   })
