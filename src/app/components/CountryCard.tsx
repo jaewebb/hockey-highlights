@@ -1,28 +1,16 @@
-import Image from "next/image";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import HockeyCard from '@/app/components/HockeyCard';
 
 import { type Country } from '@/app/types/Country'
 
 export default function CountryCard({ country }: { country: Country }) {
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-        {country.name}
-        </Typography>
-          <Image
-            src={country.logo ?? null}
-            alt={`Country logo of ${country.name}`}
-            height={100}
-            width={100}
-            loading="lazy"
-          />
-      </CardContent>
-      {/* <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
-    </Card>
+    <HockeyCard
+      altText={`Country logo of ${country.name}`}
+      height={100}
+      imgSrc={country.logo}
+      label={country.name}
+      useExternalImageLoader={false}
+      width={100}
+    />
   )
 }
