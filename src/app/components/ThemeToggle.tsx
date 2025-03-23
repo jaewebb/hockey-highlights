@@ -15,6 +15,7 @@ export default function ThemeToggle(
     <>
       <LightModeIcon fontSize="inherit" />
       <Switch
+        data-testid="darkModeToggle"
         checked={isDarkMode}
         onChange={handleThemeChange}
         slotProps={{ 
